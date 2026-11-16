@@ -1,0 +1,13 @@
+# Early design mock-ups: kept on this computer, not published
+design-mockup.html
+design-mockup-v2.html
+v2-design/
+# Working copy of the photo (the published one is site/assets/profile.jpg)
+/profile.jpg
+# Editor and system clutter
+.DS_Store
+Thumbs.db
+desktop.ini
+.claude/
+# Launcher for running the site on this computer
+start-site.bat

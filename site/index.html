@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%275%27 fill=%27%236e1423%27/%3E%3Crect x=%277%27 y=%276%27 width=%276%27 height=%2720%27 fill=%27%23e0a526%27/%3E%3Crect x=%2714%27 y=%279%27 width=%275%27 height=%2717%27 fill=%27%23f3e6c4%27/%3E%3Crect x=%2720%27 y=%275%27 width=%275%27 height=%2721%27 fill=%27%23ff5a1f%27/%3E%3C/svg%3E">
+<title>The Data Chronicles | Nanda Kishor Sajeev</title>
+<meta name="description" content="Interactive comic-book portfolio of Nanda Kishor Sajeev, Master of Data Science student at Monash University.">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<!-- three.js is loaded from a CDN. This map lets the scripts write: import ... from 'three' -->
+<script type="importmap">
+{ "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+
+<!-- The 3D scene (bookshelf, books, character, ball) is drawn on this canvas by js/main.js -->
+<canvas id="stage" tabindex="0"
+  aria-label="3D bookshelf. Press the left and right arrow keys to choose a book and Enter to open it. The same sections are in the navigation at the bottom of the page."></canvas>
+
+<!-- Comic lettering that sits over the scene -->
+<div class="hud">
+  <header class="mast">
+    <span class="imprint">NKS<br>COMICS</span>
+    <span class="issue">ISSUE #1 · MELBOURNE EDITION</span>
+    <span class="burst">OPEN TO<br>INTERNSHIPS<br>2026/27</span>
+  </header>
+
+  <section class="intro" id="intro">
+    <p class="presents">Nanda Kishor Sajeev presents</p>
+    <h1><span class="the">The</span><span class="big">Data</span><span class="big">Chronicles</span></h1>
+    <div class="who">
+      <figure class="portrait">
+        <img src="assets/profile.jpg" alt="Portrait of Nanda Kishor Sajeev">
+        <figcaption>Our hero</figcaption>
+      </figure>
+      <div class="blurb">
+        <span class="name">Nanda Kishor Sajeev</span>
+        <p>Master of Data Science student at Monash. Two years shipping production systems. I build models that leave the notebook.</p>
+        <span class="caption">Every project has a story. Pick a book →</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Second way into every section, for keyboard users and anyone in a hurry. Filled in by main.js -->
+  <nav class="nav" id="nav" aria-label="Sections"></nav>
+  <button class="sound" id="sound" aria-pressed="false">Sound: off</button>
+</div>
+
+<div id="bubble" role="status"></div>   <!-- the character's speech bubble -->
+<div id="ring" aria-hidden="true"></div> <!-- comic pointer ring -->
+<div id="lines" aria-hidden="true"></div><!-- speed lines that flash when a book flies out -->
+
+<!-- The two pages of the open book. main.js places them exactly over the 3D book's paper. -->
+<article class="pg" id="pgL" aria-live="polite"></article>
+<article class="pg" id="pgR" aria-live="polite"></article>
+
+<!-- The page that is being turned: front and back faces, flipped in 3D by main.js -->
+<div id="flipStage" aria-hidden="true"><div id="flipper"><div class="face" id="faceA"></div><div class="face" id="faceB"></div></div></div>
+
+<!-- Controls shown while a book is open -->
+<div class="reader" id="reader">
+  <button id="prev" aria-label="Previous page">◀ Back</button>
+  <span id="count"></span>
+  <button id="next" aria-label="Next page">Next ▶</button>
+  <button id="close" class="close">Close book ✕</button>
+</div>
+
+<div id="loading">INKING THE PAGES…</div>
+<!-- If someone opens this file by double-clicking it, the 3D scene cannot load. Say so instead of waiting forever. -->
+<script>
+if (location.protocol === 'file:') document.getElementById('loading').innerHTML =
+  '<div style="font:700 18px/1.5 sans-serif;letter-spacing:0;max-width:30em;padding:24px;text-align:center">This site has to be run from a web server.<br>Double-click <b>start-site.bat</b> in the portfolio folder, then use the page that opens.</div>';
+</script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

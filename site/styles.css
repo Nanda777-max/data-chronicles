@@ -1,0 +1,272 @@
+/* =====================================================================
+   THE DATA CHRONICLES: styles
+   Colours and fonts are defined once here, so the whole site changes
+   if you edit these values.
+   ===================================================================== */
+:root{
+  --cream:#f3e6c4; --burgundy:#6e1423; --burgundy-deep:#3d0a14; --mustard:#e0a526;
+  --charcoal:#1e1b18; --orange:#ff5a1f; --brown:#5b3517;
+  --display:'Bangers','Impact','Arial Black',sans-serif;
+  --body:'Comic Neue','Trebuchet MS',sans-serif;
+  --mono:'JetBrains Mono',Consolas,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;color:var(--cream);font-family:var(--body)}
+/* the wall: burgundy with a warm glow behind the shelf and halftone dots */
+body{background:
+  radial-gradient(rgba(0,0,0,.28) 1.3px,transparent 1.5px) 0 0/10px 10px,
+  radial-gradient(ellipse at 68% 48%,#a3283a 0%,var(--burgundy) 38%,var(--burgundy-deep) 85%)}
+canvas#stage{position:fixed;inset:0;width:100%;height:100%;display:block;cursor:none;outline:none;touch-action:none}
+canvas#stage:focus-visible{outline:3px dashed var(--mustard);outline-offset:-6px}
+
+/* ---------- comic cover lettering ---------- */
+.hud{position:fixed;inset:0;pointer-events:none;z-index:5}
+.mast{position:absolute;top:14px;left:20px;right:20px;display:flex;align-items:flex-start;gap:14px;font-family:var(--display);letter-spacing:.1em}
+.imprint{background:var(--cream);color:var(--charcoal);border:3px solid var(--charcoal);padding:4px 8px;font-size:15px;line-height:1;text-align:center;box-shadow:3px 3px 0 var(--charcoal)}
+.issue{font-size:15px;padding-top:9px;flex:1}
+.burst{background:var(--mustard);color:var(--charcoal);font-size:clamp(10px,1.9vh,14px);line-height:1.05;text-align:center;padding:1.9em 1.6em;transform:rotate(8deg);
+  /* a spiky comic starburst */
+  clip-path:polygon(50% 0,61% 14%,79% 7%,80% 25%,98% 28%,88% 44%,100% 58%,84% 66%,88% 85%,69% 82%,60% 100%,48% 86%,33% 97%,29% 79%,10% 80%,17% 62%,0 50%,15% 38%,6% 21%,25% 22%,30% 4%,42% 15%)}
+.intro{position:absolute;left:4vw;top:52%;transform:translateY(-50%);width:min(41vw,580px);transition:opacity .4s}
+.presents{font-family:var(--display);letter-spacing:.16em;font-size:clamp(11px,min(1.25vw,2.2vh),18px);color:var(--mustard);margin:0 0 4px}
+.intro h1{font-family:var(--display);font-weight:400;margin:0;line-height:.86;transform:rotate(-3deg);transform-origin:left center}
+.intro h1 span{display:block}
+.intro h1 .the{display:inline-block;font-size:clamp(15px,min(2.4vw,4.2vh),36px);background:var(--orange);color:var(--charcoal);border:3px solid var(--charcoal);padding:2px 12px;margin-bottom:8px;box-shadow:3px 3px 0 var(--charcoal)}
+.intro h1 .big{font-size:clamp(34px,min(8.2vw,15.5vh),128px);color:var(--cream);-webkit-text-stroke:2px var(--charcoal);paint-order:stroke fill;
+  text-shadow:4px 4px 0 var(--charcoal),8px 8px 0 var(--orange),12px 12px 0 var(--charcoal)}
+.who{display:flex;gap:min(22px,2vw);align-items:center;margin-top:min(34px,4.5vh)}
+/* the photo, framed like the panel that introduces a comic's main character */
+.portrait{position:relative;margin:0;flex:0 0 auto;width:clamp(70px,min(12vw,21vh),170px);transform:rotate(-4deg);
+  border:5px solid var(--charcoal);background:var(--cream);box-shadow:8px 8px 0 var(--mustard),8px 8px 0 3px var(--charcoal)}
+.portrait img{display:block;width:100%;aspect-ratio:10/11;object-fit:cover;filter:contrast(1.08) saturate(1.05)}
+.portrait:after{content:"";position:absolute;inset:0;mix-blend-mode:multiply;opacity:.5;
+  background:radial-gradient(rgba(110,20,35,.55) 1px,transparent 1.3px) 0 0/5px 5px}
+.portrait figcaption{position:absolute;top:-14px;left:-14px;z-index:1;background:var(--orange);color:var(--charcoal);border:3px solid var(--charcoal);
+  font-family:var(--display);letter-spacing:.08em;font-size:15px;padding:1px 9px;transform:rotate(-5deg)}
+.blurb .name{font-family:var(--display);letter-spacing:.06em;font-size:clamp(16px,min(2vw,3.6vh),30px);color:var(--mustard)}
+.blurb p{font-size:clamp(12px,min(1.25vw,2.4vh),18px);font-weight:700;margin:6px 0 12px;max-width:24em;line-height:1.35}
+.caption{display:inline-block;background:var(--mustard);color:var(--charcoal);border:3px solid var(--charcoal);padding:3px 10px;font-weight:700;font-size:14px}
+.nav{position:absolute;left:0;right:0;bottom:12px;display:flex;gap:6px;justify-content:center;flex-wrap:wrap;pointer-events:auto;padding:0 90px}
+.nav button,.sound,.reader button{font-family:var(--display);letter-spacing:.06em;font-size:14px;background:rgba(30,27,24,.78);color:var(--cream);
+  border:2px solid var(--cream);padding:4px 11px;cursor:pointer}
+.nav button:hover,.nav button:focus-visible,.sound:hover,.reader button:hover,.reader button:focus-visible{background:var(--mustard);color:var(--charcoal);outline:none}
+.sound{position:absolute;right:14px;bottom:12px;pointer-events:auto}
+body.reading .intro,body.reading .nav,body.reading .mast,body.reading .sound{opacity:0;pointer-events:none;transition:opacity .4s}
+
+/* speech bubble that follows the character */
+#bubble{position:fixed;z-index:6;pointer-events:none;background:#fff;color:var(--charcoal);border:3px solid var(--charcoal);border-radius:18px;
+  padding:5px 12px;font-weight:700;font-size:14px;white-space:nowrap;transform:translate(-50%,-100%);box-shadow:3px 3px 0 var(--charcoal);transition:opacity .25s}
+#bubble:after{content:"";position:absolute;left:50%;bottom:-13px;margin-left:-7px;border:7px solid transparent;border-top-color:var(--charcoal)}
+
+/* comic pointer ring */
+#ring{position:fixed;z-index:40;left:-99px;width:26px;height:26px;margin:-13px 0 0 -13px;border:3px solid var(--mustard);border-radius:50%;
+  pointer-events:none;transition:width .15s,height .15s,margin .15s,background .15s}
+#ring.hot{width:44px;height:44px;margin:-22px 0 0 -22px;background:rgba(224,165,38,.25)}
+#ring.grab{width:34px;height:34px;margin:-17px 0 0 -17px;border-color:var(--orange);border-style:dashed}
+@media (hover:none){#ring{display:none}}
+
+/* speed lines that flash when a book leaves the shelf */
+#lines{position:fixed;inset:0;z-index:7;pointer-events:none;opacity:0;
+  background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(243,230,196,.5) 0 1.2deg,transparent 1.2deg 7deg);
+  -webkit-mask:radial-gradient(circle,transparent 32%,#000 78%);mask:radial-gradient(circle,transparent 32%,#000 78%)}
+#lines.go{animation:lines .7s ease-out}
+@keyframes lines{0%{opacity:0;transform:scale(1.25)}25%{opacity:.75}100%{opacity:0;transform:scale(1)}}
+
+/* ---------- the open book's pages (HTML laid exactly over the 3D paper) ---------- */
+.pg{position:fixed;z-index:20;color:var(--charcoal);overflow:hidden auto;padding:.75em .85em;opacity:0;pointer-events:none;
+  transition:opacity .28s;scrollbar-width:thin}
+.pg.show{opacity:1;pointer-events:auto;cursor:none}
+.pg.show a{cursor:none}
+@media (hover:none){.pg.show,.pg.show a{cursor:auto}}
+.pg a{color:var(--burgundy);font-weight:700}
+  box-shadow:.22em .22em 0 rgba(30,27,24,.85)}
+  padding:.05em .55em;font-weight:700;font-size:.66em}
+.todo{background:#fff3b0;border:.1em dashed var(--charcoal);padding:.1em .35em;color:var(--charcoal)}
+/* the title page on the inside of the cover */
+
+.reader{position:fixed;z-index:25;left:0;right:0;bottom:14px;display:flex;gap:8px;justify-content:center;align-items:center;opacity:0;pointer-events:none;transition:opacity .3s}
+.reader.show{opacity:1;pointer-events:auto}
+.reader span{font-family:var(--display);letter-spacing:.08em;min-width:7.5em;text-align:center}
+.reader button{font-size:16px;padding:5px 14px;white-space:nowrap}
+.reader button:disabled{opacity:.35;cursor:default}
+.reader .close{background:var(--orange);color:var(--charcoal);border-color:var(--charcoal);margin-left:10px}
+
+#loading{position:fixed;inset:0;z-index:60;display:grid;place-items:center;background:var(--burgundy-deep);font-family:var(--display);font-size:34px;letter-spacing:.08em;transition:opacity .5s}
+#loading.done{opacity:0;pointer-events:none}
+
+/* ---------- tablets and phones held upright: lettering on top, shelf underneath ---------- */
+@media (max-aspect-ratio:5/4){
+  .issue{display:none}
+  .burst{font-size:11px;padding:20px 16px;margin-left:auto}
+  .intro{top:74px;left:18px;right:18px;width:auto;transform:none}
+  .intro h1 .big{font-size:clamp(34px,min(13vw,8.5vh),92px);text-shadow:3px 3px 0 var(--charcoal),6px 6px 0 var(--orange)}
+  .intro h1 .the{font-size:18px;margin-bottom:5px}
+  .who{margin-top:20px;gap:16px}
+  .portrait{width:clamp(72px,min(22vw,13vh),150px)}
+  .blurb p{font-size:clamp(12px,min(3.6vw,2vh),20px);margin-bottom:0}
+  .blurb .name{font-size:clamp(17px,min(5vw,3vh),32px)}
+  .presents{font-size:clamp(11px,min(3.2vw,1.9vh),18px)}
+  .caption{display:none}
+  .nav{padding:0 10px;bottom:46px}
+  .sound{right:50%;transform:translateX(50%);bottom:10px}
+  .reader{gap:5px} .reader span{min-width:3.4em} .reader button{font-size:14px;padding:5px 9px} .reader .close{margin-left:2px}
+}
+/* short, wide windows such as a phone on its side */
+@media (max-height:520px) and (min-aspect-ratio:5/4){
+  .caption,.issue{display:none}
+  .mast{top:8px} .imprint{font-size:11px} .burst{display:none}
+  .nav{bottom:6px} .nav button,.sound{font-size:11px;padding:2px 7px} .sound{bottom:6px}
+  .reader{bottom:6px} .reader button{font-size:12px;padding:3px 9px}
+  #bubble{font-size:11px;padding:3px 8px}
+}
+/* people who ask their device for less motion get no flashes or sliding fades */
+@media (prefers-reduced-motion:reduce){
+  #lines{display:none}
+  *{transition-duration:.01s!important;animation-duration:.01s!important}
+}
+
+/* =====================================================================
+   INSIDE THE OPEN BOOK
+   Every page is a "sheet": a framed comic page with a header strip, a body
+   made of blocks (see pages.js) and a footer with the page number.
+   All sizes are in em, so the whole page scales with the book on screen.
+   Each book sets its own --accent colours and paper pattern further down.
+   ===================================================================== */
+.pg{touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.sheet{--accent:var(--mustard);--accent2:var(--burgundy);--paper:#fbf3dc;position:relative;height:100%;display:flex;flex-direction:column;
+  border:.16em solid var(--charcoal);background-color:var(--paper);box-shadow:.2em .2em 0 rgba(30,27,24,.5);overflow:hidden}
+.ph{flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;gap:1em;background:var(--charcoal);color:var(--cream);
+  font-family:var(--display);letter-spacing:.1em;font-size:.72em;padding:.28em .8em}
+.ph span:last-child{color:var(--mustard)}
+.pb{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:space-between;gap:.65em;padding:.85em .95em .75em}
+.pb>.grow{flex:1 1 0;min-height:5em}
+.pf{flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;font-family:var(--display);letter-spacing:.08em;font-size:.66em;
+  padding:.2em .8em;border-top:.2em solid var(--charcoal);background:var(--accent);color:var(--charcoal)}
+.pf .hint{opacity:.8}
+.pf .hint.off{visibility:hidden}
+.pf .hint:last-child{animation:nudge 1.6s ease-in-out infinite;padding-right:1.6em}
+@keyframes nudge{50%{transform:translateX(.35em)}}
+/* with two pages showing, "back" belongs to the left page and "next" to the right page */
+#pgL .pf .hint:last-child,body.two #pgR .pf .hint:first-child{visibility:hidden}
+/* folded corner on the page you can turn */
+.curl{position:absolute;right:0;bottom:0;width:1.9em;height:1.9em;pointer-events:none;
+  background:linear-gradient(135deg,#fff8e6 0 50%,rgba(30,27,24,.45) 50% 55%,transparent 55%);box-shadow:-.12em -.12em .25em rgba(0,0,0,.3)}
+#pgL .curl{display:none}
+
+/* ---------- blocks ---------- */
+.t{font-family:var(--display);font-weight:400;font-size:2.45em;line-height:.92;margin:0;color:var(--accent2);text-shadow:.045em .045em 0 var(--accent);letter-spacing:.02em}
+.t.sm{font-size:1.75em}
+.lead{margin:0;font-weight:700;font-size:1em;line-height:1.3}
+.tx{margin:0;font-size:.86em;line-height:1.42}
+.say{display:flex;gap:.7em;align-items:flex-start}
+.say img{width:3.5em;height:3.5em;border-radius:50%;object-fit:cover;border:.16em solid var(--charcoal);flex:0 0 auto;background:var(--cream)}
+.say p{position:relative;margin:0;background:#fff;color:var(--charcoal);border:.16em solid var(--charcoal);border-radius:1em;padding:.6em .8em;font-size:.84em;line-height:1.4;font-weight:700}
+.say p:before{content:"";position:absolute;left:-.66em;top:1em;border:.34em solid transparent;border-right-color:var(--charcoal)}
+.narr{margin:0;background:var(--mustard);color:var(--charcoal);border:.14em solid var(--charcoal);padding:.35em .7em;font-size:.8em;font-weight:700;box-shadow:.16em .16em 0 var(--charcoal)}
+.stats{display:grid;gap:.55em;grid-template-columns:repeat(2,1fr)}
+.stats.n3{grid-template-columns:repeat(3,1fr)} .stats.n1{grid-template-columns:1fr}
+.stats div{border:.16em solid var(--charcoal);background:#fffaf0;color:var(--charcoal);padding:.4em .55em .45em;box-shadow:.2em .2em 0 var(--accent2)}
+.stats b{display:block;font-family:var(--display);font-weight:400;font-size:2.1em;line-height:1;color:var(--burgundy);letter-spacing:.02em}
+.stats.n3 b{font-size:1.65em}
+.stats span{display:block;font-size:.66em;line-height:1.25;font-weight:700}
+.callout{margin:0;font-family:var(--display);font-size:3.2em;line-height:.9;color:var(--orange);-webkit-text-stroke:.03em var(--charcoal);
+  text-shadow:.05em .05em 0 var(--charcoal);transform:rotate(-2deg);transform-origin:left;letter-spacing:.02em}
+.tl{flex:1;list-style:none;margin:0;padding:0;display:flex;flex-direction:column;justify-content:space-between;gap:.5em;position:relative}
+.tl:before{content:"";position:absolute;left:1.55em;top:.6em;bottom:.6em;border-left:.2em dashed var(--charcoal);opacity:.55}
+.tl li{display:flex;gap:.7em;align-items:flex-start}
+.tl .when{flex:0 0 3.3em;text-align:center;font-family:var(--display);background:var(--accent2);color:var(--cream);border:.14em solid var(--charcoal);
+  border-radius:1em;font-size:.9em;position:relative}
+.tl b{display:block;font-size:.84em;line-height:1.25}
+.tl div span{display:block;font-size:.7em;opacity:.85}
+.panels{display:flex;flex-direction:column;gap:.65em}
+.panels.c2{display:grid;grid-template-columns:1fr 1fr}
+.panel{position:relative;border:.16em solid var(--charcoal);background:#fffaf0;color:var(--charcoal);padding:1.4em .7em .55em;box-shadow:.2em .2em 0 rgba(30,27,24,.8)}
+.panel .cap{position:absolute;top:0;left:0;background:var(--accent);color:var(--charcoal);border-right:.14em solid var(--charcoal);border-bottom:.14em solid var(--charcoal);
+  padding:0 .6em;font-family:var(--display);letter-spacing:.08em;font-size:.72em}
+.panel h3{font-family:var(--display);font-weight:400;font-size:1.1em;margin:0 0 .15em;line-height:1.05}
+.panel p{margin:0;font-size:.76em;line-height:1.38}
+.panel.dark{background:var(--burgundy);color:var(--cream)}
+.panel.dark .cap{background:var(--orange)}
+.fig{margin:0;border:.16em solid var(--charcoal);background:var(--tint,var(--accent));overflow:hidden;position:relative;box-shadow:.2em .2em 0 rgba(30,27,24,.8)}
+.fig svg{display:block;width:100%;height:100%;overflow:visible}
+.fig.shot{background:#2a2622}
+.fig.shot img{display:block;width:100%;height:100%;object-fit:cover}
+.fig figcaption{display:none}
+.fig.missing{background:repeating-linear-gradient(45deg,#fff3b0 0 .6em,#f6e58a .6em 1.2em);display:grid;place-items:center}
+.fig.missing figcaption{display:block;color:var(--charcoal);font-weight:700;font-size:.74em;border:.12em dashed var(--charcoal);background:#fff;padding:.3em .6em;margin:1em;text-align:center}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:.28em}
+.flow span{font-family:var(--display);font-size:.7em;letter-spacing:.05em;background:var(--charcoal);color:var(--cream);padding:.2em .55em}
+.flow i{font-style:normal;font-size:.8em}
+.chips{display:flex;flex-wrap:wrap;gap:.35em;align-items:center}
+.chips em{font-style:normal;font-family:var(--display);font-size:.72em;letter-spacing:.08em;margin-right:.2em}
+.chips span{font-family:var(--mono);font-size:.6em;background:#fffaf0;color:var(--charcoal);border:.14em solid var(--charcoal);padding:.18em .55em;box-shadow:.13em .13em 0 var(--charcoal)}
+.links{display:flex;flex-wrap:wrap;gap:.6em;align-items:center}
+.links a{font-family:var(--display);letter-spacing:.06em;font-size:1em;text-decoration:none;background:var(--orange);color:var(--charcoal)!important;
+  border:.14em solid var(--charcoal);padding:.2em .8em;box-shadow:.18em .18em 0 var(--charcoal)}
+.links a:hover,.links a:focus-visible{background:var(--mustard);outline:none}
+.links .todo{font-size:.72em}
+.ls{margin:0;padding:0;list-style:none;font-size:.82em;line-height:1.4;display:flex;flex-direction:column;gap:.5em}
+.ls li{position:relative;padding-left:1.5em}
+.ls li:before{content:"➜";position:absolute;left:0;color:var(--accent2)}
+.job{border-bottom:.2em solid var(--charcoal);padding-bottom:.45em}
+.job .dates{font-family:var(--display);font-size:.72em;letter-spacing:.08em;background:var(--charcoal);color:var(--cream);padding:.1em .6em}
+.job h3{font-family:var(--display);font-weight:400;font-size:1.75em;line-height:.95;margin:.25em 0 .1em;color:var(--accent2)}
+.job p{margin:0;font-weight:700;font-size:.88em}
+.groups{flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:.6em}
+.groups section{border:.16em solid var(--charcoal);background:#fffaf0;color:var(--charcoal);padding:.5em .65em .6em;box-shadow:.2em .2em 0 var(--accent2)}
+.groups header{display:flex;align-items:center;gap:.5em;margin-bottom:.4em}
+.groups h3{font-family:var(--display);font-weight:400;font-size:1.2em;margin:0;letter-spacing:.03em}
+.ico{width:2em;height:1.8em;flex:0 0 auto}
+.groups p{margin:.45em 0 0;font-size:.68em;line-height:1.3}
+.paper{border:.16em solid var(--charcoal);background:#fffaf0;color:var(--charcoal);padding:.7em .8em;box-shadow:.2em .2em 0 var(--accent2)}
+.paper h3{font-family:var(--display);font-weight:400;font-size:1.25em;margin:.3em 0 .2em;line-height:1.05}
+.paper p{margin:0;font-size:.8em;line-height:1.38}
+.stamp{display:inline-block;font-family:var(--display);letter-spacing:.1em;font-size:.72em;border:.16em solid var(--burgundy);color:var(--burgundy);padding:0 .5em;transform:rotate(-3deg)}
+.stamp.done{border-color:#1f5f5b;color:#1f5f5b}
+.gap{margin:0;color:var(--charcoal);font-size:.74em;line-height:1.4;border:.12em dashed var(--charcoal);background:#fff9d6;padding:.4em .6em}
+.todo{background:#fff3b0;color:var(--charcoal);border:.1em dashed var(--charcoal);padding:0 .35em;font-weight:700}
+
+/* ---------- the turning page ---------- */
+#flipStage{position:fixed;inset:0;z-index:22;pointer-events:none;perspective-origin:50% 50%}
+#flipper{position:absolute;display:none;transform-style:preserve-3d;will-change:transform}
+.face{position:absolute;inset:0;padding:.75em .85em;color:var(--charcoal);overflow:hidden;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  background:#e4cb93 radial-gradient(rgba(110,20,35,.08) .1em,transparent .12em) 0 0/.75em .75em;box-shadow:0 0 1.4em rgba(0,0,0,.35)}
+#faceB{transform:rotateY(180deg)}
+/* shadow that sweeps across the page as it stands up */
+.face:after{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--shade,0);background:linear-gradient(90deg,rgba(20,6,10,.5),rgba(20,6,10,0) 65%)}
+#faceB:after{background:linear-gradient(270deg,rgba(20,6,10,.5),rgba(20,6,10,0) 65%)}
+.face .curl,.face .pf .hint{visibility:hidden}
+
+/* ---------- one look per book ---------- */
+/* The Origin Story: a ruled journal in burgundy */
+.sheet.origin{--accent:#e0a526;--accent2:#8a1c2e;--paper:#fbf3dc;background-image:repeating-linear-gradient(transparent 0 1.56em,rgba(138,28,46,.1) 1.56em 1.62em)}
+/* The Project Files: case files with a stamped file number */
+.sheet.files{--accent:#e0a526;--accent2:#1e1b18;--paper:#f7ecd0}
+.sheet.files .ph span:last-child{background:var(--orange);color:var(--charcoal);padding:0 .6em;transform:rotate(-2deg)}
+.sheet.files.hero{background-image:radial-gradient(rgba(30,27,24,.13) .08em,transparent .1em);background-size:.62em .62em}
+.sheet.files .stats b{color:var(--burgundy)}
+/* The Experience: dark green, with a milestone rail down the edge */
+.sheet.career{--accent:#7fb0a4;--accent2:#1f5f5b;--paper:#f4f0df}
+.sheet.career .pb{border-left:.55em solid #1f5f5b}
+.sheet.career .stats b,.sheet.career .callout{color:#1f5f5b}
+.sheet.career .callout{-webkit-text-stroke:0;text-shadow:.05em .05em 0 var(--mustard)}
+/* The Toolbox: a pegboard */
+.sheet.tools{--accent:#e0a526;--accent2:#6e1423;--paper:#f6e9c8;background-image:radial-gradient(rgba(30,27,24,.2) .1em,transparent .12em);background-size:1.4em 1.4em}
+/* The Research Lab: graph paper */
+.sheet.lab{--accent:#ff5a1f;--accent2:#1e1b18;--paper:#fbf6e6;
+  background-image:linear-gradient(rgba(31,95,91,.16) .06em,transparent .06em),linear-gradient(90deg,rgba(31,95,91,.16) .06em,transparent .06em);background-size:1.1em 1.1em}
+/* The Next Chapter: a dark closing page */
+.sheet.next{--accent:#e0a526;--accent2:#e0a526;--paper:#1e1b18;color:var(--cream)}
+.sheet.next .t{text-shadow:.045em .045em 0 var(--burgundy)}
+.sheet.next .stats div{box-shadow:.2em .2em 0 var(--burgundy)}
+
+
+/* upright but roomy windows (tablets, a tall browser pane): title on the left, photo and intro on the
+   right, so the lettering stays short and the shelf gets the space underneath */
+@media (max-aspect-ratio:5/4) and (min-width:700px){
+  .intro{display:grid;grid-template-columns:auto 1fr;column-gap:5vw;align-items:center}
+  .presents{grid-column:1/-1}
+  .intro h1 .big{font-size:clamp(44px,min(9.5vw,8.5vh),120px)}
+  .who{margin-top:0}
+  .portrait{width:clamp(90px,min(14vw,13vh),170px)}
+}

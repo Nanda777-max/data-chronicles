@@ -1,0 +1,17 @@
+/* =====================================================================
+   VERSION 2 ONLY: changes on top of ../site/styles.css for the white room.
+   The lettering turns dark so it reads on white walls.
+   ===================================================================== */
+body{background:#f1efea}
+.presents{color:var(--burgundy)}
+.issue{color:var(--charcoal)}
+.intro h1 .big{color:var(--burgundy);-webkit-text-stroke:0;text-shadow:3px 3px 0 var(--mustard),7px 7px 0 var(--charcoal)}
+.blurb .name{color:var(--burgundy)}
+.blurb p{color:var(--charcoal)}
+@media (min-aspect-ratio:5/4){ .intro{width:min(37vw,540px)} .intro h1 .big{font-size:clamp(34px,min(7.2vw,15vh),116px)} }
+#loading{background:#f1efea;color:var(--burgundy)}
+#ring{border-color:var(--burgundy)}
+#ring.hot{background:rgba(110,20,35,.15)}
+#lines{background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(110,20,35,.35) 0 1.2deg,transparent 1.2deg 7deg)}
+canvas#stage:focus-visible{outline-color:var(--burgundy)}
+@media (max-aspect-ratio:5/4){ .intro h1 .big{text-shadow:2px 2px 0 var(--mustard),5px 5px 0 var(--charcoal)} }
